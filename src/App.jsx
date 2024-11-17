@@ -1,22 +1,24 @@
 import './App.css'
 
-const isLoggedIn = true;
+function getUserContent( userStatus ) {
+  return (
+    userStatus === "admin" ? (
+      <>
+        <h2>Admin Dashboard</h2>
+        <button>Manage Users</button>
+      </>
+    ) : userStatus === "member" ? (
+      <p>Welcome to the community!</p>
+    ) : (
+      <a href="/signup">Sign up here</a>
+    )
+  );
+}
 
 function App() {
   return (
     <>
-      {isLoggedIn ? <h1>Hello</h1> : <h1>Sign in</h1>}
-      {isLoggedIn ? (
-        <>
-          <h2>Welcome back!</h2>
-          <p>You are Logged in. Enjoy your time here!</p>
-        </>
-      ) : (
-        <>
-          <h2>Hello, Guest!</h2>
-          <p>Please Log in to access more features.</p>
-        </>
-      )}
+      {getUserContent("admin")}
     </>
   )
 }
