@@ -8,11 +8,12 @@ const message = null;
 function App() {
   return (
     <>
-      {hasMessage && <h2>You have new messages!</h2>}
-      {message && <p>Message: {message}</p>}
-
-      <p>Message: {message ?? <em>No message</em>}</p>
-      <p>Message: {message || <em>Empty</em>}</p>
+      {[0, 123, "A", true, false, undefined, null, "Hello"]}
+      {[
+        <button>A</button>,
+        <button>B</button>,
+        <button>C</button>
+      ]}
     </>
   )
 }
