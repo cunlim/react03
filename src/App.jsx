@@ -1,12 +1,21 @@
 import './App.css'
-import ButtonA from './ButtonA'
-import ButtonB from './ButtonB'
+
+import InfoCard from './InfoCard'
 
 function App() {
+
   return (
     <>
-      <ButtonA />
-      <ButtonB />
+      <InfoCard 
+        title="Props in React"
+        content="Props pass data from one component to another."
+        author="Alice"
+      />
+      <InfoCard 
+        title="React Composition"
+        content="Composition makes your components more reusable"
+        author="Charlie"
+      />
     </>
   )
 }
