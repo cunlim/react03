@@ -2,10 +2,11 @@ import styles from './Card.module.css'
 
 function withConditionalCard(WrappedComp) {
   return function ConditionalCard({ 
-    disabled, ...props 
+    ...props 
   }) {
+    // console.log(props);
     const cardStyle = {
-      opacity: disabled ? 0.5 : 1,
+      opacity: props.disabled ? 0.5 : 1,
     }
 
     return (
