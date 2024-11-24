@@ -1,19 +1,26 @@
 import './App.css'
 
-import ProductCard from './ProductCard'
+import CardLayout from './CardLayout';
 
-const App = () => {
-  const product = {
-    name: "Laptop",
-    price: 123.4567
-  };
+const App = () => (
+  <div>
+    <CardLayout title="About">
+      <p>Props of Components</p>
+    </CardLayout>
 
-  return (
-    <ProductCard
-      {...product}
-      formatPrice={(p) => `$${p.toFixed(2)}`}
-    />
-  );
-}
+    <CardLayout title="Details">
+      <ul>
+        <li>Feature A</li>
+        <li>Feature B</li>
+        <li>Feature C</li>
+      </ul>
+    </CardLayout>
+
+    <CardLayout title="Contact">
+      <p>Email: example@example.com</p>
+      <p>Phone: 123-456-7890</p>
+    </CardLayout>
+  </div>
+);
 
 export default App
