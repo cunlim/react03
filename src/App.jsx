@@ -1,24 +1,21 @@
 import './App.css'
 
-import withConditionalCard from './withConditionalCard'
-import SimpleCard from './SimpleCard'
+function App() {
 
-const ConditionalSimpleCard = withConditionalCard(SimpleCard)
+  function handleClick() {
+    console.log('Event 1')
+  }
 
-const App = () => (
-  <>
-    <ConditionalSimpleCard 
-      title="Active Card" 
-      content="This card is active." 
-      disabled={false} 
-    />
-    
-    <ConditionalSimpleCard 
-      title="Disabled Card" 
-      content="This card is disabled." 
-      disabled={true} 
-    />
-  </>
-)
+  return (
+    <>
+      <button onClick={handleClick}>
+        Button 1
+      </button>
+      <button onClick={() => {console.log('Event 2')}}>
+        Button 2
+      </button>
+    </>
+  )
+}
 
 export default App
