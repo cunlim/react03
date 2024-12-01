@@ -1,13 +1,21 @@
 import './App.css'
-import Button from './Button'
 
 function App() {
 
   return (
     <>
-      <Button name={'Home'} />
-      <Button name={'Store'} />
-      <Button name={'Contact'} />
+      <input
+        onFocus={() => console.log('Focus')}
+        onBlur={() => console.log('Blur')}
+        onChange={(e) => console.log(e.target.value)}
+        onKeyDown={(e) => {
+          console.log(e.key, 'DOWN')
+          if (e.key === 'Enter' && e.shiftKey) {
+            console.log('Shift + Enter DOWN');
+          }
+        }}
+        onKeyUp={(e) => {console.log(e.key, 'UP')}}
+      />
     </>
   )
 }
