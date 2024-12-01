@@ -1,33 +1,34 @@
 import './App.css'
 import { useState } from 'react'
-import Profile from './Profile'
+import TempInput from './TempInput'
+import UnitSelector from './UnitSelector'
 
-function App() {
-  const users = ['Alice', 'Bob', 'Clark']
-  const [user, setUser] = useState(users[0])
-  const [status, setstatus] = useState(true)
+const App = () => {
+  const [temperature, setTemperature] = useState("")
+  const [unit, setUnit] = useState("Celsius")
 
-  console.log('App Rendered')
+  const convertedTemp = unit === "Celsius"
+    ? (temperature * 9/5 + 32).toFixed(1)
+    : ((temperature - 32) * 5/9).toFixed(1)
 
   return (
-    <>
-      <h2>User Profile</h2>
-      <button onClick={() => setstatus(!status)}>
-        Toggle Status
-      </button>
-      <button onClick={
-        () => setUser(
-          users[(users.indexOf(user) + 1) % users.length]
-        )}>
-        Switch User
-      </button>
+    <div>
+      <h2>Temperature Converter</h2>
       <p>
-        <b>{user}</b> | {status ? 'Active' : 'Inactive'}
+        Converted: {temperature ? convertedTemp : "--"} 
+        {unit === "Celsius" ? "°F" : "°C"}
       </p>
-
-      <Profile name={user} />
-    </>
+      <TempInput
+        value={temperature}
+        unit={unit}
+        onChange={setTemperature}
+      />
+      <UnitSelector
+        unit={unit}
+        onUnitChange={setUnit}
+      />
+    </div>
   )
 }
 
-export default App;
+export default App
