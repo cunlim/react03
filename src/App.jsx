@@ -1,21 +1,18 @@
 import './App.css'
+import {useState} from 'react'
 
 function App() {
 
+  const [count, setCount] = useState(0);
+
+  console.log(count);
+  console.log(useState(0));
+
   return (
     <>
-      <input
-        onFocus={() => console.log('Focus')}
-        onBlur={() => console.log('Blur')}
-        onChange={(e) => console.log(e.target.value)}
-        onKeyDown={(e) => {
-          console.log(e.key, 'DOWN')
-          if (e.key === 'Enter' && e.shiftKey) {
-            console.log('Shift + Enter DOWN');
-          }
-        }}
-        onKeyUp={(e) => {console.log(e.key, 'UP')}}
-      />
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
     </>
   )
 }
