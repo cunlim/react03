@@ -1,34 +1,43 @@
 import './App.css'
 import { useState } from 'react'
-import TempInput from './TempInput'
-import UnitSelector from './UnitSelector'
 
-const App = () => {
-  const [temperature, setTemperature] = useState("")
-  const [unit, setUnit] = useState("Celsius")
-
-  const convertedTemp = unit === "Celsius"
-    ? (temperature * 9/5 + 32).toFixed(1)
-    : ((temperature - 32) * 5/9).toFixed(1)
+function Form() {
+  const [username, setUsername] = useState('')
+  const [isSubscribed, setSubscribed] = useState(false)
+  const [role, setRole] = useState('user')
+  const roles = ['user', 'admin', 'guest']
 
   return (
-    <div>
-      <h2>Temperature Converter</h2>
-      <p>
-        Converted: {temperature ? convertedTemp : "--"} 
-        {unit === "Celsius" ? "°F" : "°C"}
+    <form>
+	    <p>
+        Name: {username}
+        {isSubscribed && ' (Subscribed)'}
       </p>
-      <TempInput
-        value={temperature}
-        unit={unit}
-        onChange={setTemperature}
-      />
-      <UnitSelector
-        unit={unit}
-        onUnitChange={setUnit}
-      />
-    </div>
+      <p>Role: {role}</p>
+      <input
+        type="text" placeholder="Username"
+        value={username}
+        onChange={
+          (e) => setUsername(e.target.value)
+        }/>
+      <input
+        type="checkbox"
+        checked={isSubscribed}
+        onChange={
+          (e) => setSubscribed(e.target.checked)
+          }/>
+      <label>Subscribe</label>
+
+      <select value={role} onChange={
+        (e) => setRole(e.target.value)}>
+        {roles.map((r) => (
+          <option key={r} value={r}>
+            {r}
+          </option>
+        ))}
+      </select>
+    </form>
   )
 }
 
-export default App
+export default Form
