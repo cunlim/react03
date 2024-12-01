@@ -1,4 +1,4 @@
-export const initialState = {
+const initialState = {
   name: '',
   year: '',
   warning: ''
@@ -22,7 +22,17 @@ export function userReducer(state, action) {
         ...state, 
         year: action.payload, 
         warning: '' }
+    case 'RESET':
+      return init(action.payload)
     default:
       throw new Error('Unknown action type')
+  }
+}
+
+export function init(externalData) {
+  return {
+    ...initialState,
+    name: externalData.name,
+    year: externalData.year
   }
 }

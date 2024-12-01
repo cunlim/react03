@@ -1,9 +1,10 @@
 import './App.css'
 import React, { useReducer } from 'react'
-import { userReducer, initialState } from './reducers/userReducer'
+import { userReducer, init } from './reducers/userReducer'
+import data from './data'
 
 function App() {
-  const [state, dispatch] = useReducer(userReducer, initialState)
+  const [state, dispatch] = useReducer(userReducer, data, init)
 
   return (
     <div>
@@ -25,6 +26,10 @@ function App() {
        && <p style={{ color: 'red' }}>{state.warning}</p>}
       <p>Name: {state.name}</p>
       <p>Year: {state.year}</p>
+      <button onClick={
+        () => dispatch({ type: 'RESET', payload: data })}>
+        Reset
+      </button>
     </div>
   )
 }
