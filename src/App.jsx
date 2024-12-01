@@ -3,16 +3,20 @@ import {useState} from 'react'
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [isPinned, setPinned] = useState(false);
 
-  console.log(count);
-  console.log(useState(0));
+  const togglePinned = () => {
+    setPinned(!isPinned);
+  }
+
+  console.log(isPinned);
+  console.log(useState(false));
 
   return (
     <>
-      <h2>Count: {count}</h2>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button onClick={() => setCount(count - 1)}>-</button>
+      <button onClick={togglePinned}>
+        {isPinned && "👌"} Pinn This!
+      </button>
     </>
   )
 }
