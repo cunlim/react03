@@ -1,19 +1,13 @@
 import './App.css'
+import Button from './Button'
 
 function App() {
 
-  function handleClick() {
-    console.log('Event 1')
-  }
-
   return (
     <>
-      <button onClick={handleClick}>
-        Button 1
-      </button>
-      <button onClick={() => {console.log('Event 2')}}>
-        Button 2
-      </button>
+      <Button name={'Home'} />
+      <Button name={'Store'} />
+      <Button name={'Contact'} />
     </>
   )
 }
