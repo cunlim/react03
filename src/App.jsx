@@ -1,47 +1,33 @@
 import './App.css'
-import {useState} from 'react'
+import { useState } from 'react'
+import Profile from './Profile'
 
 function App() {
+  const users = ['Alice', 'Bob', 'Clark']
+  const [user, setUser] = useState(users[0])
+  const [status, setstatus] = useState(true)
 
-  const [todos, setTodos] = useState(
-    ["Learn React", "Build a project"]
-  );
-
-  const [newTodo, setNewTodo] = useState("");
-
-  const addTodo = (newTodo) => {
-    setTodos([...todos, newTodo]);
-    setNewTodo("");
-  }
-
-  const deleteTodo = (index) => {
-    setTodos(
-      todos.filter(
-        (_, i) => i !== index
-      )
-    );
-  }
+  console.log('App Rendered')
 
   return (
     <>
-      <h2>Todo List</h2>
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={
-              () => deleteTodo(index)
-            }>Delete</button>
-          </li>
-        ))}
-      </ul>
-      <p>Typing: {newTodo}</p>
-      <input type="text" value={newTodo} onChange={
-        (e) => setNewTodo(e.target.value)
-      } />
-      <button onClick={() => addTodo(newTodo)}>Add New Task</button>
+      <h2>User Profile</h2>
+      <button onClick={() => setstatus(!status)}>
+        Toggle Status
+      </button>
+      <button onClick={
+        () => setUser(
+          users[(users.indexOf(user) + 1) % users.length]
+        )}>
+        Switch User
+      </button>
+      <p>
+        <b>{user}</b> | {status ? 'Active' : 'Inactive'}
+      </p>
+
+      <Profile name={user} />
     </>
   )
 }
 
-export default App
+export default App;
