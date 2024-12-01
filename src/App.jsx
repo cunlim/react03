@@ -1,59 +1,52 @@
 import './App.css'
 import { useState } from 'react'
 
-function Form() {
-  const [formData, setFormData] = useState({
-    username: '',
-    isSubscribed: false,
-    role: 'user'
-  })
-  const roles = ['user', 'admin', 'guest']
+function App() {
+  const [name, setName] = useState('')
+  const [year, setYear] = useState('')
+  const [warning, setWarning] = useState('')
 
-  const handleChange = (e) => {
-    const { name, value, type, checked }
-     = e.target
-    setFormData({
-      ...formData,
-      [name]:  type === 'checkbox' ? checked : value
-    })
+  const handleNameChange = (newName) => {
+    const formattedName
+     = newName.trim().toLowerCase()
+    setName(formattedName)
+  }
+
+  const handleYearChange = (newYear) => {
+    const age = new Date().getFullYear() - newYear
+    if (age < 18) {
+      setWarning('Must be at least 18 yrs old!')
+    } else {
+      setWarning('')
+      setYear(newYear)
+    }
   }
 
   return (
-    <form>
-      <p>
-        Name: {formData.username}
-        {formData.isSubscribed && ' (Subscribed)'}
-      </p>
-      <p>Role: {formData.role}</p>
+    <div>
       <input
         type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
+        placeholder="Enter name"
+        value={name}
+        onChange={
+          (e) => handleNameChange(e.target.value)}
       />
-
-      <label>
-        <input
-          type="checkbox"
-          name="isSubscribed"
-          checked={formData.isSubscribed}
-          onChange={handleChange}
-        />
-        Subscribe
-      </label>
-
-      <select 
-        name="role" value={formData.role}
-        onChange={handleChange}>
-        {roles.map((r) => (
-          <option key={r} value={r}>
-            {r}
-          </option>
-        ))}
-      </select>
-    </form>
+      <input
+        type="number"
+        placeholder="Enter birth year"
+        value={year}
+        onChange={
+          (e) => handleYearChange(e.target.value)}
+      />
+      {
+        warning && (
+          <p style={{ color: 'red' }}>{warning}</p>
+        )
+      }
+      <p>Name: {name}</p>
+      <p>Year: {year}</p>
+    </div>
   )
 }
 
-export default Form
+export default App
